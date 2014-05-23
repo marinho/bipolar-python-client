@@ -6,7 +6,6 @@ from bipolar import BipolarClient
 class BipolarClientTest(unittest.TestCase):
     def setUp(self):
         self.client = BipolarClient(
-                #base_url="http://bipolar.tdispatch.com",
                 base_url="http://bipolar.test",
                 api_key="XyLHPw78WfoHlHacDfvbtKiPKvQxNbmt",
                 )
