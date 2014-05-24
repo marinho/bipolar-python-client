@@ -6,6 +6,10 @@ import urllib
 import json
 
 
+class UnexpectedStatusCode(Exception):
+    pass
+
+
 class BipolarClient(object):
     base_url = None
     api_key = None
@@ -62,7 +66,7 @@ class BipolarClient(object):
         resp = self._post("/feature/", json.dumps(params))
 
         if resp.status_code not in (200, 201):
-            raise Exception("Unexpected status code %s" % resp.status_code)
+            raise UnexpectedStatusCode("Unexpected status code %s" % resp.status_code)
 
         try:
             return json.loads(resp.content)
@@ -83,7 +87,7 @@ class BipolarClient(object):
         resp = self._put("/feature/%s/" % name, json.dumps(params))
 
         if resp.status_code not in (200, 201):
-            raise Exception("Unexpected status code %s" % resp.status_code)
+            raise UnexpectedStatusCode("Unexpected status code %s" % resp.status_code)
 
         try:
             return json.loads(resp.content)
@@ -94,7 +98,7 @@ class BipolarClient(object):
         resp = self._get("/feature/%s" % name)
 
         if resp.status_code != 200:
-            raise Exception("Unexpected status code %s" % resp.status_code)
+            raise UnexpectedStatusCode("Unexpected status code %s" % resp.status_code)
 
         try:
             return json.loads(resp.content)
@@ -105,7 +109,7 @@ class BipolarClient(object):
         resp = self._get("/feature/")
 
         if resp.status_code != 200:
-            raise Exception("Unexpected status code %s" % resp.status_code)
+            raise UnexpectedStatusCode("Unexpected status code %s" % resp.status_code)
 
         try:
             return json.loads(resp.content)
@@ -116,7 +120,7 @@ class BipolarClient(object):
         resp = self._delete("/feature/%s" % name)
 
         if resp.status_code != 204:
-            raise Exception("Unexpected status code %s" % resp.status_code)
+            raise UnexpectedStatusCode("Unexpected status code %s" % resp.status_code)
 
         return True
 
@@ -126,7 +130,7 @@ class BipolarClient(object):
         resp = self._post("/qualifier/", json.dumps(params))
 
         if resp.status_code not in (200, 201):
-            raise Exception("Unexpected status code %s" % resp.status_code)
+            raise UnexpectedStatusCode("Unexpected status code %s" % resp.status_code)
 
         try:
             return json.loads(resp.content)
@@ -137,7 +141,7 @@ class BipolarClient(object):
         resp = self._get("/qualifier/%s" % name)
 
         if resp.status_code != 200:
-            raise Exception("Unexpected status code %s" % resp.status_code)
+            raise UnexpectedStatusCode("Unexpected status code %s" % resp.status_code)
 
         try:
             return json.loads(resp.content)
@@ -148,7 +152,7 @@ class BipolarClient(object):
         resp = self._get("/qualifier/")
 
         if resp.status_code != 200:
-            raise Exception("Unexpected status code %s" % resp.status_code)
+            raise UnexpectedStatusCode("Unexpected status code %s" % resp.status_code)
 
         try:
             return json.loads(resp.content)
@@ -159,7 +163,7 @@ class BipolarClient(object):
         resp = self._delete("/qualifier/%s" % name)
 
         if resp.status_code != 204:
-            raise Exception("Unexpected status code %s" % resp.status_code)
+            raise UnexpectedStatusCode("Unexpected status code %s" % resp.status_code)
 
         return True
 
@@ -168,7 +172,7 @@ class BipolarClient(object):
         resp = self._post("/permissions/", json.dumps(params))
 
         if resp.status_code != 201:
-            raise Exception("Unexpected status code %s" % resp.status_code)
+            raise UnexpectedStatusCode("Unexpected status code %s" % resp.status_code)
 
         try:
             return json.loads(resp.content)["permissions"]
@@ -182,7 +186,7 @@ class BipolarClient(object):
         resp = self._get("/permissions/?" + urllib.urlencode(params))
 
         if resp.status_code != 200:
-            raise Exception("Unexpected status code %s" % resp.status_code)
+            raise UnexpectedStatusCode("Unexpected status code %s" % resp.status_code)
 
         try:
             return json.loads(resp.content)["permissions"]
