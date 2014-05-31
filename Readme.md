@@ -1,5 +1,7 @@
 ## Overview
 
+[![Build Status](https://drone.io/github.com/marinho/bipolar-python-client/status.png)](https://drone.io/github.com/marinho/bipolar-python-client/latest)
+
 This is a Python client to interact with **Bipolar** ( https://github.com/marinho/bipolar ).
 
 Bipolar is a micro project that turns any project from any language able to implement the
