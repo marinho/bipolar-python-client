@@ -12,7 +12,7 @@ setup(
     keywords='python bipolar feature toggle switch',
     author='Marinho Brandao',
     author_email='marinho@gmail.com',
-    url='http://github.com/marinho/bipolar-client/',
+    url='http://github.com/marinho/bipolar-python-client/',
     license='BSD',
     classifiers=[
         'Development Status :: 4 - Beta',
