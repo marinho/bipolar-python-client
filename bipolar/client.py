@@ -1,9 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-import requests
 import urllib
 import json
+
+try:
+    import requests
+except ImportError:
+    requests = None
 
 
 class UnexpectedStatusCode(Exception):
@@ -16,6 +20,9 @@ class BipolarClient(object):
     version = "v1"
 
     def __init__(self, base_url="http://localhost:5006", api_key=None, version="v1"):
+        if not requests:
+            raise Exception("Bipolar client requires requests package installed")
+
         self.base_url = base_url
         self.api_key = api_key
         self.version = version
